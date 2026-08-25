@@ -940,10 +940,12 @@ def fill_primary_container(event=None):
         label = tk.Label(primary_container, text=weapon.name)
         label.grid(row=row, column=col * 2, sticky="w", padx=(10, 2), pady=2)
 
+        spinbox_limit = archetype.primary_limit * archetype.model_count
+
         spinbox = tk.Spinbox(
             primary_container,
             from_=0,
-            to=archetype.primary_limit,
+            to=spinbox_limit,
             textvariable=var,
             width=3
         )

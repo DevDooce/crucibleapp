@@ -183,7 +183,9 @@ tri_lobe_vectors = Archetype(
     },
     composition=["3 Tri-lobe Vectors"],
     leader="This unit can be attached to the following unit: Plague Marines, Poxwalkers",
-    model_count = 3
+    model_count = 3,
+
+
 )
 
 death_guard_archetypes = [plague_sorcerer,

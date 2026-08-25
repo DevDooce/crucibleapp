@@ -528,6 +528,7 @@ dg_terminator_ranged = [
     plasma_gun,
     reaper_autocannon,
     twin_plague_spewer,
+    plague_wind
 ]
 
 dg_infantry_ranged = dg_terminator_ranged.copy()
@@ -535,7 +536,7 @@ dg_infantry_ranged.remove(reaper_autocannon)
 dg_infantry_ranged.remove(twin_plague_spewer)
 
 plague_sorcerer_ranged = dg_infantry_ranged.copy()
-plague_sorcerer_ranged.append(plague_wind)
+
 
 # PISTOLS
 
