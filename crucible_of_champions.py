@@ -1034,10 +1034,12 @@ def fill_pistols_container(event=None):
         label = tk.Label(pistols_container, text=weapon.name)
         label.grid(row=row, column=col * 2, sticky="w", padx=(10, 2), pady=2)
 
+        spinbox_limit = archetype.pistol_limit * archetype.model_count
+
         spinbox = tk.Spinbox(
             pistols_container,
             from_=0,
-            to=archetype.pistol_limit,
+            to=spinbox_limit,
             textvariable=var,
             width=3
         )
@@ -1078,10 +1080,12 @@ def fill_melee_container(event=None):
         label = tk.Label(melee_container, text=weapon.name)
         label.grid(row=row, column=col * 2, sticky="w", padx=(10, 2), pady=2)
 
+        spinbox_limit = archetype.melee_limit * archetype.model_count
+
         spinbox = tk.Spinbox(
             melee_container,
             from_=0,
-            to=archetype.melee_limit,
+            to=spinbox_limit,
             textvariable=var,
             width=3
         )
