@@ -589,3 +589,68 @@ plague_lord_melee.append(great_plague_blade)
 
 plague_lord_terminator_melee = plague_lord_melee.copy()
 plague_lord_terminator_melee.append(manreaper)
+
+#==========================================
+
+# Chaos Daemons
+
+#============================================
+
+khorne_ranged = [
+    weaponclass("Infernal cannon", "24'", 3, "3+", 5, -1, 2, "RAPID FIRE 3"),
+]
+
+khorne_melee = [
+    weaponclass("Attendants' hellblades", "Melee", 4, "3+", 5, -2, 2, "EXTRA ATTACKS"),
+    weaponclass("Blade of blood", "Melee", 5, "2+", 6, -2, 3, None),
+    weaponclass("Hellforged weapons — strike", "Melee", 8, "2+", 8, -2, 3, None),
+    weaponclass("Hellforged weapons — sweep", "Melee", 16, "2+", 8, -1, 1, None),
+    weaponclass("Juggernaut's bladed horn", "Melee", 4, "4+", 6, -1, 1, "EXTRA ATTACKS, LANCE"),
+]
+
+# --- NURGLE WEAPONS ---
+nurgle_ranged = [
+    weaponclass("Death's heads", "12'", 3, "4+", 4, 0, 1, "BLAST, LETHAL HITS"),
+    weaponclass("Disgusting sneezes", "6'", 6, "N/A", 3, 0, 1, "PISTOL, TORRENT"),
+    weaponclass("Infernal cannon", "24'", 3, "2+", 5, -1, 2, None),
+    weaponclass("Lasher of torment", "6'", 6, "3+", 4, 0, 1, "ANTI-INFANTRY 3+, ASSAULT, PISTOL"),
+]
+
+nurgle_melee = [
+    weaponclass("Acidic maw", "Melee", 2, "4+", 7, -4, 3, "DEVASTATING WOUNDS, EXTRA ATTACKS"),
+    weaponclass("Diseased claws and teeth", "Melee", 3, "4+", 2, 0, 1, None),
+    weaponclass("Foul balesword", "Melee", 4, "3+", 5, -2, 2, None),
+    weaponclass("Foul mouthparts", "Melee", 2, "4+", 5, -1, 2, "EXTRA ATTACKS, LETHAL HITS"),
+    weaponclass("Hellforged weapons — strike", "Melee", 7, "2+", 8, -2, 3, "LETHAL HITS"),
+    weaponclass("Hellforged weapons — sweep", "Melee", 14, "2+", 6, -1, 1, "LETHAL HITS"),
+    weaponclass("Tiny balesword", "Melee", 3, "4+", 2, -2, 2, "LETHAL HITS"),
+    weaponclass("Tiny corrupted staff", "Melee", 3, "4+", 4, -1, 3, "LETHAL HITS"),
+]
+
+# --- SLAANESH WEAPONS ---
+slaanesh_ranged = [
+    weaponclass("Arcane Fireball — witchfire", "18'", 3, "3+", 5, -1, 3, "PSYCHIC"),
+    weaponclass("Arcane Fireball — focused witchfire", "18'", 3, "3+", 6, -2, 3, "DEVASTATING WOUNDS, HAZARDOUS, PSYCHIC"),
+    weaponclass("Infernal cannon", "24'", 3, "2+", 5, -2, 2, None),
+]
+
+slaanesh_melee = [
+    weaponclass("Bladed axle", "Melee", 6, "3+", 6, -1, 2, "EXTRA ATTACKS"),
+    weaponclass("Hellforged weapons — strike", "Melee", 6, "2+", 8, -2, 3, "PRECISION"),
+    weaponclass("Hellforged weapons — sweep", "Melee", 14, "2+", 6, 0, 1, None),
+    weaponclass("Lashing tongue", "Melee", 2, "4+", 4, 0, 1, "EXTRA ATTACKS, LETHAL HITS"),
+    weaponclass("Ravaging claws", "Melee", 6, "2+", 4, -1, 1, "DEVASTATING WOUNDS"),
+    weaponclass("Seeker tongues", "Melee", 4, "4+", 4, 0, 1, "EXTRA ATTACKS, LETHAL HITS"),
+]
+
+# --- TZEENTCH WEAPONS ---
+tzeentch_ranged = [
+    weaponclass("Infernal cannon", "24'", 3, "2+", 5, -2, 2, None),
+]
+
+tzeentch_melee = [
+    weaponclass("Close-combat weapon", "Melee", 3, "4+", 4, -1, 1, "PSYCHIC"),
+    weaponclass("Hellforged weapons — strike", "Melee", 6, "2+", 8, -2, 3, "DEVASTATING WOUNDS, PSYCHIC"),
+    weaponclass("Hellforged weapons — sweep", "Melee", 12, "2+", 6, -1, 1, "DEVASTATING WOUNDS, PSYCHIC"),
+    weaponclass("Screamer bites", "Melee", 6, "4+", 6, -2, 2, "EXTRA ATTACKS"),
+]

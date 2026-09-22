@@ -1,10 +1,12 @@
-# imports
+#imports
 import tkinter as tk
 from tkinter import ttk
+
 #import CrucibleList
 import Specialisms_and_Abilities
 import Weapons
 import Archetypes
+from Archetypes import patron_slaanesh
 from Specialisms_and_Abilities import no_specialism
 
 factions = ('Adeptus Astartes',
@@ -23,7 +25,7 @@ factions = ('Adeptus Astartes',
             #'Thousand Sons',
             'Death Guard',
             #'Emperor`s Children',
-            #'Chaos Daemons',
+            'Chaos Daemons',
             #'Aeldari',
             #'Drukhari',
             #'Leagues of Votann',
@@ -34,6 +36,12 @@ factions = ('Adeptus Astartes',
             #'Genestealer Cults'
 )
 
+chaos_list = [
+    Archetypes.patron_khorne,
+    Archetypes.patron_nurgle,
+    Archetypes.patron_slaanesh,
+    Archetypes.patron_tzeentch,
+]
 
 FACTION_TO_ARCH = {
     "Adeptus Astartes": Archetypes.astartes_archetypes,
@@ -52,7 +60,7 @@ FACTION_TO_ARCH = {
     #"Thousand Sons": CrucibleList.ThousandSons_Arch,
     "Death Guard": Archetypes.death_guard_archetypes,
     #"Emperors Children": CrucibleList.EmperorsChildren_Arch,
-    #"Chaos Daemons": CrucibleList.ChaosDaemons_Arch,
+    "Chaos Daemons": Archetypes.chaos_daemons_arch,
     #"Aeldari": CrucibleList.Aeldari_Arch,
     #"Drukhari": CrucibleList.Drukhari_Arch,
     #"Leagues of Votann": CrucibleList.LeaguesofVotann_Arch,
@@ -63,27 +71,41 @@ FACTION_TO_ARCH = {
     #"Genestealer Cults": CrucibleList.GeneStealer_Arch,
 }
 SPECIALISM_MAP = {
-    ("Champion of the Chapter", None): Specialisms_and_Abilities.astartes_specialisms,
-    ("Librarius Adept", None): Specialisms_and_Abilities.astartes_specialisms,
-    ("Venerable Battle-Brother", None): Specialisms_and_Abilities.dreadie_specialisms,
+    ("Champion of the Chapter", None, None): Specialisms_and_Abilities.astartes_specialisms,
+    ("Librarius Adept", None,None): Specialisms_and_Abilities.astartes_specialisms,
+    ("Venerable Battle-Brother", None,None): Specialisms_and_Abilities.dreadie_specialisms,
 
+    ("Front-Line Commander", "Astra Militarum",None): Specialisms_and_Abilities.FLC_specialisms,
+    ("Augmented Bone'ead", "Astra Militarum",None): Specialisms_and_Abilities.augmented_specialism,
+    ("Sentinel Commander", "Astra Militarum",None): Specialisms_and_Abilities.sentinel_specialisms,
 
+    ("Champion of Titan", "Grey Knights",None): Specialisms_and_Abilities.GK_infantry_specialisms,
+    ("Venerable Daemon Slayer","Grey Knights",None ): Specialisms_and_Abilities.GK_vehicles_specialisms,
+    ("Dreadknight Champion", "Grey Knights",None): Specialisms_and_Abilities.GK_vehicles_specialisms,
 
-    ("Front-Line Commander", "Astra Militarum"): Specialisms_and_Abilities.FLC_specialisms,
-    ("Augmented Bone'ead", "Astra Militarum"): Specialisms_and_Abilities.augmented_specialism,
-    ("Sentinel Commander", "Astra Militarum"): Specialisms_and_Abilities.sentinel_specialisms,
+    ("Daemonic Herald","Chaos Daemons","Khorne"):Specialisms_and_Abilities.khorne_infantry_specialisms,
+    ("Daemonic Charioteer","Chaos Daemons","Khorne"):Specialisms_and_Abilities.khorne_mounted_specialisms,
+    ("Immortal Champion","Chaos Daemons","Khorne"):Specialisms_and_Abilities.khorne_monster_specialisms,
 
-    ("Champion of Titan", "Grey Knights"): Specialisms_and_Abilities.GK_infantry_specialisms,
-    ("Venerable Daemon Slayer","Grey Knights" ): Specialisms_and_Abilities.GK_vehicles_specialisms,
-    ("Dreadknight Champion", "Grey Knights"): Specialisms_and_Abilities.GK_vehicles_specialisms,
+    ("Daemonic Herald", "Chaos Daemons", "Nurgle"): Specialisms_and_Abilities.nurgle_infantry_specialisms,
+    ("Daemonic Charioteer", "Chaos Daemons", "Nurgle"): Specialisms_and_Abilities.nurgle_mounted_specialisms,
+    ("Immortal Champion", "Chaos Daemons", "Nurgle"): Specialisms_and_Abilities.nurgle_monster_specialisms,
 
-    ("Plague Sorcerer", "Death Guard"): Specialisms_and_Abilities.death_guard_specialisms,
-    ("Plague Lord", "Death Guard" ): Specialisms_and_Abilities.death_guard_specialisms,
-    ("Tri-Lobe Vectors", "Death Guard"): Specialisms_and_Abilities.death_guard_specialisms,
+    ("Daemonic Herald", "Chaos Daemons", "Slaanesh"): Specialisms_and_Abilities.slaanesh_infantry_specialisms,
+    ("Daemonic Charioteer", "Chaos Daemons", "Slaanesh"): Specialisms_and_Abilities.slaanesh_mounted_specialisms,
+    ("Immortal Champion", "Chaos Daemons", "Slaanesh"): Specialisms_and_Abilities.slaanesh_monster_specialisms,
 
-    ("Shas'nel", "Tau Empire"): Specialisms_and_Abilities.shasnel_specialisms,
-    ("Battlesuit Veteran", "Tau Empire"): Specialisms_and_Abilities.battlesuit_specialisms,
-    ("Kinband Champion", "Tau Empire"): Specialisms_and_Abilities.kinband_specialisms,
+    ("Daemonic Herald", "Chaos Daemons", "Tzeentch"): Specialisms_and_Abilities.tzeentch_infantry_specialisms,
+    ("Daemonic Charioteer", "Chaos Daemons", "Tzeentch"): Specialisms_and_Abilities.tzeentch_mounted_specialisms,
+    ("Immortal Champion", "Chaos Daemons", "Tzeentch"): Specialisms_and_Abilities.tzeentch_monster_specialisms,
+
+    ("Plague Sorcerer", "Death Guard",None): Specialisms_and_Abilities.death_guard_specialisms,
+    ("Plague Lord", "Death Guard",None ): Specialisms_and_Abilities.death_guard_specialisms,
+    ("Tri-Lobe Vectors", "Death Guard",None): Specialisms_and_Abilities.death_guard_specialisms,
+
+    ("Shas'nel", "Tau Empire",None): Specialisms_and_Abilities.shasnel_specialisms,
+    ("Battlesuit Veteran", "Tau Empire",None): Specialisms_and_Abilities.battlesuit_specialisms,
+    ("Kinband Champion", "Tau Empire",None): Specialisms_and_Abilities.kinband_specialisms,
 
 }
 Arch_to_pistol = {
@@ -161,29 +183,45 @@ Arch_to_primary = {
     ("Tri-Lobe Vectors","Terminator Armour"):Weapons.dg_terminator_ranged,
 }
 Abilities_Map = {
-    ("Champion of the Chapter", None): Specialisms_and_Abilities.adeptus_astartes_abilities,
-    ("Librarius Adept", None): Specialisms_and_Abilities.adeptus_astartes_abilities,
-    ("Venerable Battle-Brother", None): Specialisms_and_Abilities.dreadie_abilities,
+    ("Champion of the Chapter", None,None): Specialisms_and_Abilities.adeptus_astartes_abilities,
+    ("Librarius Adept", None,None): Specialisms_and_Abilities.adeptus_astartes_abilities,
+    ("Venerable Battle-Brother", None,None): Specialisms_and_Abilities.dreadie_abilities,
 
-    ("Front-Line Commander", "Astra Militarum"): Specialisms_and_Abilities.Guard_abilities,
-    ("Augmented Bone'ead", "Astra Militarum"): Specialisms_and_Abilities.Guard_abilities,
-    ("Sentinel Commander", "Astra Militarum"): Specialisms_and_Abilities.Guard_abilities,
+    ("Front-Line Commander", "Astra Militarum",None): Specialisms_and_Abilities.Guard_abilities,
+    ("Augmented Bone'ead", "Astra Militarum",None): Specialisms_and_Abilities.Guard_abilities,
+    ("Sentinel Commander", "Astra Militarum",None): Specialisms_and_Abilities.Guard_abilities,
 
-    ("Champion of Titan", "Grey Knights"): Specialisms_and_Abilities.grey_knights_abilities_infantry,
-    ("Venerable Daemon Slayer","Grey Knights" ): Specialisms_and_Abilities.grey_knights_abilities_vehicles,
-    ("Dreadknight Champion", "Grey Knights"): Specialisms_and_Abilities.grey_knights_abilities_vehicles,
+    ("Champion of Titan", "Grey Knights",None): Specialisms_and_Abilities.grey_knights_abilities_infantry,
+    ("Venerable Daemon Slayer","Grey Knights",None ): Specialisms_and_Abilities.grey_knights_abilities_vehicles,
+    ("Dreadknight Champion", "Grey Knights",None): Specialisms_and_Abilities.grey_knights_abilities_vehicles,
 
-    ("Plague Sorcerer", "Death Guard"): Specialisms_and_Abilities.death_guard_abilities,
-    ("Plague Lord", "Death Guard"): Specialisms_and_Abilities.death_guard_abilities,
-    ("Tri-Lobe Vectors", "Death Guard"): Specialisms_and_Abilities.death_guard_abilities,
+    ("Daemonic Charioteer","Chaos Daemons","Khorne"):Specialisms_and_Abilities.khorne_other_abilities,
+    ("Daemonic Herald","Chaos Daemons","Khorne"):Specialisms_and_Abilities.khorne_infantry_abilities,
+    ("Immortal Champion","Chaos Daemons","Khorne"):Specialisms_and_Abilities.khorne_other_abilities,
 
-    ("Shas'nel", "Tau Empire"): Specialisms_and_Abilities.shasnelvet_abilities,
-    ("Battlesuit Veteran", "Tau Empire"): Specialisms_and_Abilities.shasnelvet_abilities,
-    ("Kinband Champion", "Tau Empire"): Specialisms_and_Abilities.kinband_abilities,
+    ("Daemonic Charioteer","Chaos Daemons","Nurgle"):Specialisms_and_Abilities.nurgle_abilities,
+    ("Daemonic Herald","Chaos Daemons","Nurgle"):Specialisms_and_Abilities.nurgle_abilities,
+    ("Immortal Champion","Chaos Daemons","Nurgle"):Specialisms_and_Abilities.nurgle_abilities,
 
-    ("Champion of the Chapter", "Black Templars"): Specialisms_and_Abilities.black_templars_dreadie_abilities,
-    ("Librarius Adept", "Black Templars"): Specialisms_and_Abilities.black_templars_dreadie_abilities,
-    ("Venerable Battle-Brother", "Black Templars"): Specialisms_and_Abilities.black_templars_dreadie_abilities,
+    ("Daemonic Charioteer","Chaos Daemons","Slaanesh"):Specialisms_and_Abilities.slaanesh_abilities,
+    ("Daemonic Herald","Chaos Daemons","Slaanesh"):Specialisms_and_Abilities.slaanesh_abilities,
+    ("Immortal Champion","Chaos Daemons","Slaanesh"):Specialisms_and_Abilities.slaanesh_abilities,
+
+    ("Daemonic Charioteer","Chaos Daemons","Tzeentch"):Specialisms_and_Abilities.tzeentch_abilities,
+    ("Daemonic Herald","Chaos Daemons","Tzeentch"):Specialisms_and_Abilities.tzeentch_abilities,
+    ("Immortal Champion","Chaos Daemons","Tzeentch"):Specialisms_and_Abilities.tzeentch_abilities,
+
+    ("Plague Sorcerer", "Death Guard",None): Specialisms_and_Abilities.death_guard_abilities,
+    ("Plague Lord", "Death Guard",None): Specialisms_and_Abilities.death_guard_abilities,
+    ("Tri-Lobe Vectors", "Death Guard",None): Specialisms_and_Abilities.death_guard_abilities,
+
+    ("Shas'nel", "Tau Empire",None): Specialisms_and_Abilities.shasnelvet_abilities,
+    ("Battlesuit Veteran", "Tau Empire",None): Specialisms_and_Abilities.shasnelvet_abilities,
+    ("Kinband Champion", "Tau Empire",None): Specialisms_and_Abilities.kinband_abilities,
+
+    ("Champion of the Chapter", "Black Templars",None): Specialisms_and_Abilities.black_templars_dreadie_abilities,
+    ("Librarius Adept", "Black Templars",None): Specialisms_and_Abilities.black_templars_dreadie_abilities,
+    ("Venerable Battle-Brother", "Black Templars",None): Specialisms_and_Abilities.black_templars_dreadie_abilities,
 }
 
 # Definitions
@@ -222,6 +260,8 @@ def pick_archetype(event):
 
     if archetypechosen:
         archetypechosen.current(0)
+
+    toggle_chaos_patrons(event)
     pick_abilities(event)
     pick_specialism(event)
     refresh_weapons()
@@ -233,6 +273,49 @@ def get_archetype():
         return current_archetype[index]
 
     return None
+
+def toggle_chaos_patrons(event):
+    faction = factionchosen.get()
+    global chaos_CB
+    global patron_label
+
+    if faction == "Chaos Daemons":
+
+        patron_label.grid(row=3, column=0, padx=10, pady=5, sticky="e")
+
+        chaos_CB.grid(row=3, column=1, padx=10, pady=5, sticky="w")
+        chaos_CB.current(0)
+
+    else:
+        chaos_CB.grid_remove()
+        patron_label.grid_remove()
+
+def get_chaos_patron():
+    index = chaos_CB.current()
+    if 0 <= index < len(chaos_list):
+        return chaos_list[index]
+    return None
+
+def resolve_modifier(archetype_value, modifier_value):
+    if modifier_value is None:
+        return archetype_value
+    return archetype_value + modifier_value
+
+def resolve_patron_stat(archetype, patron, stat_name, archetype_value):
+    if patron is None:
+        return archetype_value
+
+    overrides = patron.archetype_overrides.get(archetype.name, {})
+
+    if stat_name in overrides:
+        rule = overrides[stat_name]
+        if rule["mode"] == "override":
+            return rule["value"]
+        elif rule["mode"] == "modifier":
+            return resolve_modifier(archetype_value, rule["value"])
+
+    plain_modifier = getattr(patron, stat_name, None)
+    return resolve_modifier(archetype_value, plain_modifier)
 
 def toggle_weapon_selection_style():
     archetype = get_archetype()
@@ -258,13 +341,21 @@ def pick_specialism(event):
 
     archetype = archetypechosen.get()
     faction = factionchosen.get()
+    patron_text = chaos_CB.get()
 
-    key = (archetype, faction)
+    valid_patron_names = [p.patron for p in chaos_list]
+    patron = patron_text if patron_text in valid_patron_names else None
+
+    key = (archetype, faction, patron)
 
     if key in SPECIALISM_MAP:
         current_specialisms = list(SPECIALISM_MAP[key])
+    elif (archetype, faction, None) in SPECIALISM_MAP:
+        current_specialisms = list(SPECIALISM_MAP[(archetype, faction, None)])
+    elif (archetype, None, None) in SPECIALISM_MAP:
+        current_specialisms = list(SPECIALISM_MAP[(archetype, None, None)])
     else:
-        current_specialisms = list(SPECIALISM_MAP.get((archetype, None), []))
+        current_specialisms = []
 
     current_specialisms.insert(0, no_specialism)
 
@@ -286,13 +377,21 @@ def pick_abilities(event):
 
     archetype = archetypechosen.get()
     faction = factionchosen.get()
+    patron_text = chaos_CB.get()
 
-    key = (archetype, faction)
+    valid_patron_names = [p.patron for p in chaos_list]
+    patron = patron_text if patron_text in valid_patron_names else None
+
+    key = (archetype, faction, patron)
 
     if key in Abilities_Map:
-        current_ability  = Abilities_Map[key]
+        current_ability = Abilities_Map[key]
+    elif (archetype, faction, None) in Abilities_Map:
+        current_ability = Abilities_Map[(archetype, faction, None)]
+    elif (archetype, None, None) in Abilities_Map:
+        current_ability = Abilities_Map[(archetype, None, None)]
     else:
-        current_ability = Abilities_Map.get((archetype, None), [])
+        current_ability = []
 
     abilitychosen["values"] = [s.name for s in current_ability]
 
@@ -318,8 +417,6 @@ def toggle_ability_selection_style():
         tlv_ability_frame.grid_remove()
 
 def fill_tlv_ability_choices():
-    # current_ability already holds the correct pool for this archetype,
-    # set up by pick_abilities() using the same Abilities_Map lookup.
     names = [" "] + [a.name for a in current_ability]
 
     tlv_ability_1_chosen["values"] = names
@@ -454,6 +551,7 @@ def total_points():
 def make_final_stats():
     archetype = get_archetype()
     specialism = get_specialisms()
+    patron = get_chaos_patron()
 
     if specialism is None:
         final_m = archetype.m
@@ -461,14 +559,18 @@ def make_final_stats():
         final_sv = archetype.sv
         final_ivl = archetype.ivl
         final_w = archetype.w
-
-
     else:
         final_m = resolve_stat(archetype.m,specialism.m)
         final_t = resolve_stat(archetype.t,specialism.t)
         final_sv = resolve_stat(archetype.sv,specialism.sv)
         final_ivl = resolve_stat(archetype.ivl,specialism.inv_sv)
         final_w = resolve_stat(archetype.w,specialism.w)
+
+    final_m = resolve_patron_stat(archetype, patron, "m", final_m)
+    final_t = resolve_patron_stat(archetype, patron, "t", final_t)
+    final_sv = resolve_patron_stat(archetype, patron, "sv", final_sv)
+    final_ivl = resolve_patron_stat(archetype, patron, "ivl", final_ivl)
+    final_w = resolve_patron_stat(archetype, patron, "w", final_w)
 
     stat_line ={"m": final_m,
      "t": final_t,
@@ -477,7 +579,6 @@ def make_final_stats():
      "w": final_w}
 
     return stat_line
-
 def open_character_sheet_window():
     archetype = get_archetype()
 
@@ -615,6 +716,11 @@ def open_character_sheet_window():
         label = tk.Label(Ability_Frame, text=archetype.ability,wraplength=400,justify="left",anchor="nw")
         label.grid(row=3, column=0, sticky="w")
 
+    patron = get_chaos_patron()
+    if patron is not None:
+        pact_label = tk.Label(Ability_Frame, text=patron.pact_name)
+        pact_label.grid(row=99, column=0, sticky="w")
+
     Specialism_Frame = generic_frame("Specialism", 2, 1,1)
     specialism = get_specialisms()
     label = tk.Label(Specialism_Frame, text = specialism.name)
@@ -639,7 +745,12 @@ def open_character_sheet_window():
     label.grid(row=1, column=0, sticky="w",rowspan=3)
 
     FactionKeyword_Frame = generic_frame("Faction Keywords", 4, 1,1)
-    label = tk.Label(FactionKeyword_Frame, text=factionchosen.get())
+    patron = get_chaos_patron()
+    if patron is not None and patron.faction_keyword is not None:
+        faction_keyword_text = patron.faction_keyword
+    else:
+        faction_keyword_text = factionchosen.get()
+    label = tk.Label(FactionKeyword_Frame, text=faction_keyword_text)
     label.grid(row=1, column=0, sticky="w")
     root.mainloop()
 
@@ -720,30 +831,34 @@ archetypechosen = ttk.Combobox(main_frame, values=[" "], width=40, textvariable=
 archetypechosen.grid(row=2, column=1, padx=10, pady=5, sticky="w")
 archetypechosen.current(0)
 
-# Specialism selection (row 3)
+# Specialism selection
+
 ttk.Label(main_frame, text="Choose Specialism:",
-          font=("Arial", 12)).grid(row=3, column=0, padx=10, pady=5, sticky="e")
+          font=("Arial", 12)).grid(row=4, column=0, padx=10, pady=5, sticky="e")
+patron_label = ttk.Label(main_frame, text="Choose Patron:",
+                                 font=("Arial", 12))
+
+chaos_CB = ttk.Combobox(main_frame, values=[p.patron for p in chaos_list], width=40)
+chaos_CB.bind("<<ComboboxSelected>>", lambda event: (pick_abilities(event),
+                                                     pick_specialism(event),
+                                                     refresh_weapons(event)))
 
 o = tk.StringVar()
-specialismchosen = ttk.Combobox(main_frame, values=[" "], width=40, textvariable=o)
-specialismchosen.grid(row=3, column=1, padx=10, pady=5, sticky="w")
+specialismchosen = ttk.Combobox(main_frame, values=[""], width=40, textvariable=o)
+specialismchosen.grid(row=4, column=1, padx=10, pady=5, sticky="w")
 specialismchosen.current(0)
 
-#Ability selection (row 4)
+#Ability selection
 ttk.Label(main_frame, text="Choose Ability",
-          font=("Arial", 12)).grid(row=4, column=0, padx=10, pady=5, sticky="e")
+          font=("Arial", 12)).grid(row=5, column=0, padx=10, pady=5, sticky="e")
 
 p = tk.StringVar()
 abilitychosen = ttk.Combobox(main_frame, values=[" "], width=40, textvariable=p)
-abilitychosen.grid(row=4, column=1, padx=10, pady=5, sticky="w")
+abilitychosen.grid(row=5, column=1, padx=10, pady=5, sticky="w")
 abilitychosen.current(0)
 
-# Tri-lobe Vectors: three independent ability pickers, one per model.
-# Hidden by default; only shown for Tri-lobe Vectors via toggle_ability_selection_style().
-# Wrapped in their own frame so they don't depend on main_frame's columns 2/3,
-# which were never configured with a width (only columns 0 and 1 were).
 tlv_ability_frame = tk.Frame(main_frame)
-tlv_ability_frame.grid(row=4, column=1, padx=10, pady=5, sticky="w")
+tlv_ability_frame.grid(row=5, column=1, padx=10, pady=5, sticky="w")
 
 tlv_ability_1_var = tk.StringVar()
 tlv_ability_1_chosen = ttk.Combobox(tlv_ability_frame, values=[" "], width=20, textvariable=tlv_ability_1_var)
@@ -767,7 +882,7 @@ tlv_ability_3_var.trace_add("write", update_ability_exclusions)
 #Weapons selection
 
 primary_container = tk.LabelFrame(main_frame,text = "Ranged", padx=10, pady=10)
-primary_container.grid(row=5, column=0, columnspan=2, pady=10, padx=10, sticky="ew")
+primary_container.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="ew")
 
 dreadie_frame_1 = tk.LabelFrame(main_frame,text = "Option 1", padx=10, pady=10)
 
@@ -921,7 +1036,12 @@ def fill_primary_container(event=None):
 
     archetype = get_archetype()
     specialism = get_specialisms()
-    key = (archetype.name, specialism.name)
+    patron_text = chaos_CB.get()
+
+    valid_patron_names = [p.patron for p in chaos_list]
+    patron = patron_text if patron_text in valid_patron_names else None
+
+    key = (archetype.name, specialism.name, patron)
 
     if key in Arch_to_primary:
         primary_list = Arch_to_primary[key]
@@ -1003,7 +1123,7 @@ pistol_check_vars = []
 
 # pistols tick boxes
 pistols_container = tk.LabelFrame(main_frame,text = "Pistols", padx=10, pady=10)
-pistols_container.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="ew")
+pistols_container.grid(row=7, column=0, columnspan=2, pady=10, padx=10, sticky="ew")
 
 dreadie_frame_2 = tk.LabelFrame(main_frame,text = "Option 2  (all +10 pts)", padx=10, pady=10)
 
@@ -1047,7 +1167,7 @@ def fill_pistols_container(event=None):
 
 #melee weapons tick box
 melee_container = tk.LabelFrame(main_frame,text = "Melee", padx=10, pady=10)
-melee_container.grid(row=7, column=0, columnspan=2, pady=10, padx=10, sticky="ew")
+melee_container.grid(row=8, column=0, columnspan=2, pady=10, padx=10, sticky="ew")
 
 melee_check_vars = []
 
@@ -1094,11 +1214,13 @@ def fill_melee_container(event=None):
 dreadie_frame_4 = tk.LabelFrame(main_frame,text = "Option 4 (If no ironhail)", padx=10, pady=10)
 
 def combined_handler(event):
+    toggle_chaos_patrons(event)
     pick_specialism(event)
     refresh_weapons(event)
     pick_abilities(event)
 
 def refresh_weapons(event=None):
+
     toggle_weapon_selection_style()
     toggle_ability_selection_style()
     fill_tlv_ability_choices()

@@ -23,6 +23,67 @@ class Archetype:
         self.pistol_limit = pistol_limit
         self.melee_limit = melee_limit
 
+class chaos_patron:
+    def __init__(self, patron, patron_points, keywords,faction_keyword, pact_name, m, t, w, sv, ivl, archetype_overrides=None):
+        self.patron = patron
+        self.patron_points = patron_points
+        self.keywords = keywords
+        self.faction_keyword= faction_keyword
+        self.pact_name = pact_name
+        self.m = m
+        self.t = t
+        self.w = w
+        self.sv = sv
+        self.ivl = ivl
+        self.archetype_overrides = archetype_overrides if archetype_overrides is not None else {}
+
+
+patron_khorne = chaos_patron(
+    patron="Khorne",
+    patron_points=15,
+    keywords=["KHORNE"],
+    faction_keyword= "BLOOD LEGIONS",
+    pact_name="PACT OF BLOOD",
+    m=2, t=1, w=1, sv=None, ivl=None,
+    archetype_overrides={
+        "Daemonic Charioteer": {"sv": {"mode": "override", "value": 3}}
+    }
+)
+
+patron_tzeentch = chaos_patron(
+    patron="Tzeentch",
+    patron_points=0,
+    keywords=["TZEENTCH", "PSYKER"],
+    faction_keyword= "SCINTILLATING LEGIONS",
+    pact_name="PACT OF SORCERY",
+    m=None, t=None, w=None, sv=None, ivl=4,
+    archetype_overrides={
+        "Daemonic Charioteer": {
+            "m": {"mode": "modifier", "value": 6},
+            "extra_keywords": ["FLY"]
+        }
+    }
+)
+
+patron_nurgle = chaos_patron(
+    patron="Nurgle",
+    patron_points=10,
+    keywords=["NURGLE"],
+    faction_keyword= "PLAGUE LEGIONS",
+    pact_name="PACT OF DECAY",
+    m=None, t=2, w=2, sv=None, ivl=None,
+    archetype_overrides={}
+)
+
+patron_slaanesh = chaos_patron(
+    patron="Slaanesh",
+    patron_points=0,
+    keywords=["SLAANESH", "LEGIONS OF EXCESS", "PSYKER"],
+    faction_keyword= "LEGIONS OF EXCESS",
+    pact_name="PACT OF EXCESS",
+    m=3, t=None, w=None, sv=None, ivl=None,
+    archetype_overrides={}
+)
 champion_of_the_chapter = Archetype(
     name="Champion of the Chapter",
     m=6, t=4, sv=3, ivl=None, w=4, ld=6, oc=1,
@@ -303,3 +364,65 @@ sentinel_commander = Archetype(
 guard_archetypes = [front_line_commander,
                     augmented_bone_ead,
                     sentinel_commander]
+
+# CHAOS DAEMONS
+
+daemonic_herald = Archetype(
+    name="Daemonic Herald",
+    m=6,
+    t=3,
+    sv=7,
+    ivl=0,
+    w=3,
+    ld=7,
+    oc=1,
+    archpoints=60,
+    core=["Crucible", "Deep Strike", "Leader"],
+    faction_rules=["Shadow of Chaos"],
+    keywords=["INFANTRY", "CHARACTER", "CHAOS", "DAEMON", "SUMMONED", "DAEMONIC HERALD"],
+    ability="Daemonic Locus: While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model, or 03 destroyed models with the BATTLELINE keyword, to that unit.",
+    composition="1 Daemonic Herald",
+    leader="INFANTRY, DAEMON units (excluding POSSESSED units) which share one of the following keywords with this model: KHORNE, NURGLE, SLAANESH, TZEENTCH"
+)
+
+daemonic_charioteer = Archetype(
+    name="Daemonic Charioteer",
+    m=6,
+    t=7,
+    sv=6,
+    ivl=0,
+    w=8,
+    ld=7,
+    oc=3,
+    archpoints=120,
+    core=["Crucible", "Deep Strike", "Leader"],
+    faction_rules=["Shadow of Chaos"],
+    keywords=["MOUNTED", "CHARACTER", "CHAOS", "DAEMON", "DAEMONIC CHARIOTEER"],
+    ability="Malefic Impact: Melee weapons equipped by models in this unit have [LANCE].",
+    composition="1 Daemonic Charioteer",
+    leader="MOUNTED, DAEMON units which share one of the following keywords with this model: KHORNE, NURGLE, SLAANESH, TZEENTCH"
+)
+
+immortal_champion = Archetype(
+    name="Immortal Champion",
+    m=8,
+    t=10,
+    sv=2,
+    ivl=0,
+    w=10,
+    ld=6,
+    oc=3,
+    archpoints=180,
+    core=["Crucible", "Deadly Demise D3", "Deep Strike"],
+    faction_rules=["Shadow of Chaos"],
+    keywords=["MONSTER", "CHARACTER", "CHAOS", "DAEMON", "IMMORTAL CHAMPION"],
+    ability="Infernal Attendants: While this model is within 3\" of one or more friendly DAEMON INFANTRY units, this model has the Lone Operative ability. Font of Unreality: Each time an attack is allocated to a friendly DAEMON unit within 3\" of this model, subtract 1 from the Hit roll.",
+    composition="1 Immortal Champion",
+    leader=0
+)
+
+chaos_daemons_arch = [
+    daemonic_charioteer,
+    daemonic_herald,
+    immortal_champion,
+]

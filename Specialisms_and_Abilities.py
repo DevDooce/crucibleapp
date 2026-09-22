@@ -187,7 +187,7 @@ raider_pattern_bike = Specialisms(
 )
 
 terminator_armour = Specialisms(
-    name="Terminator Armour (test)",
+    name="Terminator Armour (+15pts)",
     description="Change this model's Move characteristic to 5\", its Toughness characteristic to 5, its Save characteristic to 2+, and its Wounds characteristic to 5. Remove the Tacticus keyword, add the Terminator keyword, it has a 4+ invulnerable save, it gains the Deep Strike ability, and replace the list of units this model can be attached to: Terminator Assault Squad, Terminator Squad",
     spepoint=15,
     remove_keywords=["Tacticus"],
@@ -772,3 +772,305 @@ black_templars_abilities.extend(adeptus_astartes_abilities)
 black_templars_dreadie_abilities = black_templars_abilities.copy()
 black_templars_dreadie_abilities.remove(armour_of_faith)
 black_templars_dreadie_abilities.remove(vehement_aggression)
+
+
+# ============================================
+# KHORNE DAEMONS
+# ============================================
+daemonic_wings = Specialisms(
+    name="Daemonic Wings",
+    description="Add 4\" to this model's Move characteristic and it has the FLY keyword.",
+    spepoint=0,
+    remove_keywords=[],
+    m=4,
+    t=0,
+    sv=0,
+    inv_sv=0,
+    w=0,
+    add_keywords=["FLY"],
+    remove_ability=[],
+    add_ability=[],
+    leader=[]
+)
+
+collar_of_khorne = Specialisms(
+    name="Collar of Khorne",
+    description="This model has the Feel No Pain 3+ ability against Psychic Attacks.",
+    spepoint=0,
+    remove_keywords=[],
+    m=0,
+    t=0,
+    sv=0,
+    inv_sv=0,
+    w=0,
+    add_keywords=[],
+    remove_ability=[],
+    add_ability=["Feel No Pain 3+ against Psychic Attacks"],
+    leader=[]
+)
+
+juggernaut_of_khorne = Specialisms(
+    name="Juggernaut of Khorne (+20 pts)",
+    description="Improve this model's Move characteristic by 2\", its Toughness characteristic by 3, change its Save characteristic to 3+, it is equipped with 1 Juggernaut's bladed horn in addition to the weapons you choose in Step 4, change its INFANTRY keyword to MOUNTED, and replace the list of units this model can be attached to: BLOODCRUSHERS.",
+    spepoint=20,
+    remove_keywords=["INFANTRY"],
+    m=2,
+    t=3,
+    sv=3,
+    inv_sv=0,
+    w=0,
+    add_keywords=["MOUNTED"],
+    remove_ability=[],
+    add_ability=["Juggernaut's bladed horn"],
+    leader=["BLOODCRUSHERS"]
+)
+
+khorne_infantry_specialisms = [
+    collar_of_khorne,
+    juggernaut_of_khorne,
+]
+
+khorne_mounted_specialisms = khorne_infantry_specialisms.copy()
+khorne_mounted_specialisms.remove(juggernaut_of_khorne)
+
+khorne_monster_specialisms = khorne_mounted_specialisms.copy()
+khorne_monster_specialisms.append(daemonic_wings)
+
+bloodmarked = Abilities(
+    name="Bloodmarked (+20 pts)",
+    description="At the start of the Fight phase, select one enemy unit within 18\" of and visible to this model. Until the end of the phase, each time a friendly KHORNE unit makes an attack that targets that unit, improve the Strength, Armour Penetration and Damage characteristics of that attack by 1.",
+    abilpoint=20
+)
+
+rage_fuelled_strength = Abilities(
+    name="Rage-fuelled Strength (+10 pts)",
+    description="Each time a model in this unit makes an attack, add 1 to the Wound roll.",
+    abilpoint=10
+)
+
+restless_prey_seeker = Abilities(
+    name="Restless Prey-seeker",
+    description="You can re-roll Advance and Charge rolls made for this unit.",
+    abilpoint=0
+)
+khorne_infantry_abilities = [
+    bloodmarked,
+    rage_fuelled_strength,
+    restless_prey_seeker
+]
+
+khorne_other_abilities = khorne_infantry_abilities.copy()
+khorne_other_abilities.remove(rage_fuelled_strength)
+
+#=========================================
+#Nurgle Daemons
+#=========================================
+
+giggling_balemite = Specialisms(
+    name="Giggling Balemite",
+    description="Replace this model's INFANTRY keyword with the SWARM keyword, and replace the list of units this model can be attached to: NURGLINGS.",
+    spepoint=0,
+    remove_keywords=["INFANTRY"],
+    m=0,
+    t=0,
+    sv=0,
+    inv_sv=0,
+    w=0,
+    add_keywords=["SWARM"],
+    remove_ability=[],
+    add_ability=[],
+    leader=["NURGLINGS"]
+)
+
+rot_fly = Specialisms(
+    name="Rot Fly (+10 pts)",
+    description="Improve this model's Move characteristic by 4\", its Toughness characteristic by 3, replace its INFANTRY keyword with the MOUNTED and FLY keywords, and replace the list of units this model can be attached to: PLAGUE DRONES.",
+    spepoint=10,
+    remove_keywords=["INFANTRY"],
+    m=4,
+    t=3,
+    sv=0,
+    inv_sv=0,
+    w=0,
+    add_keywords=["MOUNTED", "FLY"],
+    remove_ability=[],
+    add_ability=[],
+    leader=["PLAGUE DRONES"]
+)
+
+nurgle_infantry_specialisms = [
+    giggling_balemite,
+    rot_fly
+]
+
+nurgle_mounted_specialisms = [
+
+]
+
+nurgle_monster_specialisms = [
+    daemonic_wings
+]
+
+jolly_gutpipes = Abilities(
+    name="Jolly Gutpipes",
+    description= "This model is leading a unit, add 1\" to the Move characteristic of models in that unit and you can re-roll Advance rolls made for it.",
+    abilpoint=0
+)
+
+keep_counting = Abilities(
+    name="Keep Counting!",
+    description="Melee weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability.",
+    abilpoint=0
+)
+
+meet_your_quota = Abilities(
+    name="Meet Your Quota!",
+    description="While this model's unit is not Battle-shocked, add 1 to the Objective Control characteristic of models in that unit.",
+    abilpoint=0
+)
+
+nurgle_abilities = [
+    jolly_gutpipes,
+    keep_counting,
+    meet_your_quota
+]
+
+#===========================
+#Slaanesh Daemons
+#===========================
+
+perfumed_fog = Specialisms(
+    name="Perfumed Fog",
+    description="This unit has the SMOKE keyword.",
+    spepoint=0,
+    remove_keywords=[],
+    m=0,
+    t=0,
+    sv=0,
+    inv_sv=0,
+    w=0,
+    add_keywords=["SMOKE"],
+    remove_ability=[],
+    add_ability=[],
+    leader=[]
+)
+
+steed_of_slaanesh = Specialisms(
+    name="Steed of Slaanesh (+10 pts)",
+    description="Improve this model's Move characteristic by 5\", its Toughness characteristic by 1 and its Wounds characteristic by 2, add the Scouts 9\" ability, change its INFANTRY keyword to MOUNTED, and replace the list of units this model can be attached to: SEEKERS.",
+    spepoint=10,
+    remove_keywords=["INFANTRY"],
+    m=5,
+    t=1,
+    sv=0,
+    inv_sv=0,
+    w=2,
+    add_keywords=["MOUNTED"],
+    remove_ability=[],
+    add_ability=["Scouts 9\""],
+    leader=["SEEKERS"]
+)
+
+slaanesh_infantry_specialisms = [
+    perfumed_fog,
+    steed_of_slaanesh
+]
+
+slaanesh_mounted_specialisms = slaanesh_infantry_specialisms.copy()
+slaanesh_mounted_specialisms.remove(steed_of_slaanesh)
+slaanesh_monster_specialisms = slaanesh_mounted_specialisms.copy()
+slaanesh_monster_specialisms.append(daemonic_wings)
+
+discordant_disruption = Abilities(
+    name="Discordant Disruption [Aura]",
+    description="While an enemy PSYKER unit is within 12\" of this model, Psychic weapons equipped by models in that unit have the [HAZARDOUS] ability.",
+    abilpoint=0
+)
+
+sadistic_savagery = Abilities(
+    name="Sadistic Savagery",
+    description="Melee weapons equipped by models in this unit have the [SUSTAINED HITS 1] ability.",
+    abilpoint=0
+)
+
+swallow_energy = Abilities(
+    name="Swallow Energy",
+    description="Models in this unit have the Feel No Pain 4+ ability against mortal wounds and Psychic Attacks.",
+    abilpoint=0
+)
+
+slaanesh_abilities = [
+    discordant_disruption,
+    sadistic_savagery,
+    swallow_energy
+]
+
+#================================
+#Tzeentch Daemons
+#================================
+
+disc_of_tzeentch = Specialisms(
+    name="Disc of Tzeentch",
+    description="Improve this model's Move characteristic by 6\", change its INFANTRY keyword to MOUNTED, add the FLY keyword, and replace the list of units this model can be attached to: SCREAMERS.",
+    spepoint=0,
+    remove_keywords=["INFANTRY"],
+    m=6,
+    t=0,
+    sv=0,
+    inv_sv=0,
+    w=0,
+    add_keywords=["MOUNTED", "FLY"],
+    remove_ability=[],
+    add_ability=[],
+    leader=["SCREAMERS"]
+)
+
+eldritch_flames = Specialisms(
+    name="Eldritch Flames",
+    description="In your Shooting phase, after this model has shot, select one enemy unit that was hit by one or more of those attacks. Until the end of the phase, that unit cannot have the Benefit of Cover.",
+    spepoint=0,
+    remove_keywords=[],
+    m=0,
+    t=0,
+    sv=0,
+    inv_sv=0,
+    w=0,
+    add_keywords=[],
+    remove_ability=[],
+    add_ability=["Deny Cover"],
+    leader=[]
+)
+
+tzeentch_infantry_specialisms = [
+    disc_of_tzeentch,
+    eldritch_flames
+]
+
+tzeentch_mounted_specialisms = tzeentch_infantry_specialisms.copy()
+tzeentch_mounted_specialisms.remove(disc_of_tzeentch)
+tzeentch_monster_specialisms = tzeentch_mounted_specialisms.copy()
+tzeentch_monster_specialisms.append(daemonic_wings)
+
+blazing_warpfire = Abilities(
+    name="Blazing Warpfire",
+    description="Ranged weapons equipped by models in this unit have the [ASSAULT] ability.",
+    abilpoint=0
+)
+
+malefic_deceit = Abilities(
+    name="Malefic Deceit",
+    description="Each time an attack is made against this unit, subtract 1 from the Hit roll.",
+    abilpoint=0
+)
+
+rider_of_the_immaterial_winds = Abilities(
+    name="Rider of the Immaterial Winds",
+    description="Once per battle, at the end of your opponent's turn, if this model's unit is not within Engagement Range of one or more enemy units, you can remove that unit from the battlefield and place it into Strategic Reserves.",
+    abilpoint=0
+)
+
+tzeentch_abilities = [
+    blazing_warpfire,
+    malefic_deceit,
+    rider_of_the_immaterial_winds
+]
